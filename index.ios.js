@@ -11,8 +11,24 @@ import {
   Text,
   View
 } from 'react-native';
+import VoipPushNotification from 'react-native-voip-push-notification';
 
 export default class voip extends Component {
+  componentWillMount() {
+    VoipPushNotification.requestPermissions();
+
+    VoipPushNotification.addEventListener('register', (token) => {
+      console.log(token); //never logs
+    });
+
+  VoipPushNotification.addEventListener('notification', (notification) => {
+    console.log(notification);
+    VoipPushNotification.presentLocalNotification({
+        alertBody: "hello!"
+    });
+  });
+}
+
   render() {
     return (
       <View style={styles.container}>
