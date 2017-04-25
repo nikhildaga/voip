@@ -24,7 +24,7 @@ export default class voip extends Component {
   VoipPushNotification.addEventListener('notification', (notification) => {
     console.log(notification);
     VoipPushNotification.presentLocalNotification({
-        alertBody: "hello!"
+        alertBody: notification.getMessage()
     });
   });
 }
